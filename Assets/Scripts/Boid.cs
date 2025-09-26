@@ -17,6 +17,29 @@ public class Boid : MonoBehaviour
         velocity = Random.insideUnitCircle.normalized * speed;
     }
 
+    void StayInBounds()
+    {
+        Vector2 pos = transform.position;
+
+        float minX = -manager.spawnBounds.x;
+        float maxX = manager.spawnBounds.x;
+        float minY = -manager.spawnBounds.y;
+        float maxY = manager.spawnBounds.y;
+
+        Vector2 steer = Vector2.zero;
+
+        if (pos.x < minX) steer.x = 1;
+        else if (pos.x > maxX) steer.x = -1;
+
+        if (pos.y < minY) steer.y = 1;
+        else if (pos.y > maxY) steer.y = -1;
+
+        if (steer != Vector2.zero)
+        {
+            velocity += steer.normalized * manager.boundaryWeight * Time.deltaTime;
+        }  
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -67,6 +90,8 @@ public class Boid : MonoBehaviour
         //Rptate boid in direction of travel
         float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+
+        StayInBounds();
     }
 
     public Vector2 GetVelocity() => velocity;

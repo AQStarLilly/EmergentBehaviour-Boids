@@ -11,6 +11,8 @@ public class FlockManager : MonoBehaviour
 
     private List<Boid> allBoids = new List<Boid>();
 
+    public float boundaryWeight = 5f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

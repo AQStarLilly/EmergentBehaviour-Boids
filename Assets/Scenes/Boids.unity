@@ -166,6 +166,7 @@ MonoBehaviour:
   boidPrefab: {fileID: -5415002293900030696, guid: e2102c63a22f54e469c70c8fae18af7e, type: 3}
   boidCount: 100
   spawnBounds: {x: 10, y: 10}
+  boundaryWeight: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +273,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 50
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
